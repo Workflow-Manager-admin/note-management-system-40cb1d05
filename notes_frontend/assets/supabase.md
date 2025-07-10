@@ -16,13 +16,14 @@ This app expects a `notes` table in Supabase with the following columns:
 
 ```sql
 create table notes (
-  id uuid default uuid_generate_v4() primary key,
+  id uuid default gen_random_uuid() primary key,
   title text not null,
   content text,
   created_at timestamp with time zone default now() not null,
   updated_at timestamp with time zone default now() not null
 );
 ```
+(The deployed schema uses `gen_random_uuid()` as the default to ensure compatibility with Supabase's available UUID functions.)
 
 Enable Row Level Security (RLS) and add public (anon) access for select, insert, update, delete for demo/dev purposes.
 
